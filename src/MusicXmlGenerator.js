@@ -8,7 +8,7 @@ import { Guitar } from 'musicvis-lib';
  * @param {string} rootNote root note
  * @returns {number[][]} array of [string, fret] positions
  */
-export function generatePattern(patternType, rootNote = 'A') {
+export function generatePattern(patternType, rootNote = 'A', repeat = 1, alternate = false) {
     const rootNotePositions = ['E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B', 'C', 'C#', 'D', 'D#'];
     const rootPos = rootNotePositions.indexOf(rootNote);
     const pattern = patterns.get(patternType);
@@ -16,7 +16,23 @@ export function generatePattern(patternType, rootNote = 'A') {
         const [string, fret] = d;
         return [string, fret + rootPos];
     });
-    return shiftedToRoot;
+    if (repeat === 1) {
+        return shiftedToRoot;
+
+    }
+    // Repeat with or without alternative diraction
+    let result = shiftedToRoot;
+    if (repeat > 1) {
+        let reversed = [...shiftedToRoot].reverse();
+        for (let repetition = 1; repetition < repeat; repetition++) {
+            if (alternate && repetition % 2 === 1) {
+                result = [...result, ...reversed];
+            } else {
+                result = [...result, ...shiftedToRoot];
+            }
+        }
+    }
+    return result;
 }
 
 /**

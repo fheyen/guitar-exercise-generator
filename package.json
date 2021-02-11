@@ -1,5 +1,5 @@
 {
-  "name": "app",
+  "name": "guitar-exercise-generator",
   "version": "0.2.0",
   "private": false,
   "dependencies": {

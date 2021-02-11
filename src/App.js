@@ -1,6 +1,9 @@
 import './App.css';
 import React, { PureComponent } from 'react';
 import { generatePattern, generateXml } from './MusicXmlGenerator';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGithub } from '@fortawesome/free-brands-svg-icons';
+import { faToggleOff, faToggleOn } from '@fortawesome/free-solid-svg-icons';
 
 class App extends PureComponent {
 
@@ -11,16 +14,60 @@ class App extends PureComponent {
             rootNote: 'C',
             tempo: 120,
             timeSig: '4/4',
+            repeat: 4,
+            alternate: true,
+            textTab: '',
         };
+    }
+
+    componentDidMount() {
+        this.toTextTab();
+    }
+
+    componentDidUpdate() {
+        this.toTextTab();
+    }
+
+    /**
+     * Renders preview as text tab
+     */
+    toTextTab() {
+        const { type, rootNote, repeat, alternate } = this.state;
+        // Generate XML
+        const pattern = generatePattern(type, rootNote, repeat, alternate);
+
+        const timeStringMatrix = [];
+        timeStringMatrix.push(['e-', 'B-', 'G-', 'D-', 'A-', 'E-']);
+        for (const position of pattern) {
+            const [string, fret] = position;
+            const timeSlice = Array.from({ length: 6 });
+            for (let str = 1; str <= 6; str++) {
+                if (str === string) {
+                    timeSlice[str - 1] = `${fret}-`;
+                } else {
+                    timeSlice[str - 1] = fret > 9 ? '---' : '--';
+                }
+            }
+            timeStringMatrix.push(timeSlice);
+        }
+        let result = '';
+        for (let string = 0; string < 6; string++) {
+            for (let time = 0; time < pattern.length; time++) {
+                result = `${result}${timeStringMatrix[time][string]}`;
+            }
+            result = `${result}\n`;
+        }
+        console.log(result);
+        this.setState({ textTab: result });
     }
 
     /**
      * Creates a downloadable MusicXML file
      */
     download = () => {
-        const { type, rootNote, tempo, timeSig } = this.state;
+        const { type, rootNote, tempo, timeSig, repeat, alternate } = this.state;
         // Generate XML
-        const pattern = generatePattern(type, rootNote);
+        const pattern = generatePattern(type, rootNote, repeat, alternate);
         const name = `[Guitar Exercise] ${rootNote} ${type} ${tempo} bpm`;
         const text = generateXml(name, tempo, timeSig, pattern);
 
@@ -68,7 +115,8 @@ class App extends PureComponent {
                             type='number'
                             min='30'
                             max='200'
-                            value='120'
+                            step='5'
+                            defaultValue='120'
                             onInput={e => this.setState({ tempo: +e.target.value })}
                         />
                     </label>
@@ -82,12 +130,38 @@ class App extends PureComponent {
                             ))}
                         </select>
                     </label>
+                    <label>
+                        Repeat
+                        <input
+                            type='number'
+                            min='1'
+                            max='20'
+                            step='1'
+                            defaultValue='4'
+                            onInput={e => this.setState({ repeat: +e.target.value })}
+                        />
+                    </label>
+                    <label>
+                        <button onClick={() => this.setState({ alternate: !this.state.alternate })}>
+                            Alternate <FontAwesomeIcon icon={this.state.alternate ? faToggleOn : faToggleOff} />
+                        </button>
+                    </label>
                 </div>
                 <h2>Output</h2>
                 <div>
                     <button onClick={this.download}>
                         Download MusicXML
                     </button>
+                </div>
+                <div>
+                    <textarea value={this.state.textTab} readOnly>
+                    </textarea>
+                </div>
+                <div className='githubLink'>
+                    <a href='https://github.com/fheyen/guitar-exercise-generator'>
+                        <FontAwesomeIcon icon={faGithub} />&nbsp;
+                        https://github.com/fheyen/guitar-exercise-generator
+                     </a>
                 </div>
             </div>
         );
