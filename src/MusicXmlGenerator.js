@@ -1,6 +1,7 @@
 import patterns from './Patterns';
 import { Guitar } from 'musicvis-lib';
 
+
 /**
  * Takes a baseline pattern and moves it to the correct position on the fretboard
  *
@@ -9,9 +10,8 @@ import { Guitar } from 'musicvis-lib';
  * @returns {number[][]} array of [string, fret] positions
  */
 export function generatePattern(patternType, rootNote = 'A', repeat = 1, alternate = false) {
-    const rootNotePositions = ['E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B', 'C', 'C#', 'D', 'D#'];
-    const rootPos = rootNotePositions.indexOf(rootNote);
     const pattern = patterns.get(patternType);
+    const rootPos = pattern.rootNotePositions.indexOf(rootNote);
     const shiftedToRoot = pattern.positions.map(d => {
         const [string, fret] = d;
         return [string, fret + rootPos];

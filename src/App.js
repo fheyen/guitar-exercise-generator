@@ -1,6 +1,7 @@
 import './App.css';
 import React, { PureComponent } from 'react';
 import { generatePattern, generateXml } from './MusicXmlGenerator';
+import patterns from './Patterns';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { faToggleOff, faToggleOn } from '@fortawesome/free-solid-svg-icons';
@@ -10,34 +11,45 @@ class App extends PureComponent {
     constructor(props) {
         super(props);
         this.state = {
-            type: 'pentatonic',
+            type: 'pentatonic G type',
             rootNote: 'C',
             tempo: 120,
             timeSig: '4/4',
             repeat: 4,
             alternate: true,
             textTab: '',
+            fretboard: null,
         };
     }
 
     componentDidMount() {
-        this.toTextTab();
+        this.renderPreview();
     }
 
-    componentDidUpdate() {
-        this.toTextTab();
+    componentDidUpdate(prevProps, prevState) {
+        if (
+            prevState.type !== this.state.type ||
+            prevState.rootNote !== this.state.rootNote ||
+            prevState.tempo !== this.state.tempo ||
+            prevState.timeSig !== this.state.timeSig ||
+            prevState.repeat !== this.state.repeat ||
+            prevState.alternate !== this.state.alternate
+        ) {
+            this.renderPreview();
+        }
     }
 
     /**
-     * Renders preview as text tab
+     * Renders a preview as text tab
      */
-    toTextTab() {
-        const { type, rootNote, repeat, alternate } = this.state;
-        // Generate XML
+    renderPreview() {
+        const { type, rootNote, tempo, timeSig, repeat, alternate } = this.state;
+        // Generate pattern
         const pattern = generatePattern(type, rootNote, repeat, alternate);
 
+        // Create tab note-by-note
         const timeStringMatrix = [];
-        timeStringMatrix.push(['e-', 'B-', 'G-', 'D-', 'A-', 'E-']);
+        timeStringMatrix.push(['e -', 'B -', 'G -', 'D -', 'A -', 'E -']);
         for (const position of pattern) {
             const [string, fret] = position;
             const timeSlice = Array.from({ length: 6 });
@@ -50,15 +62,48 @@ class App extends PureComponent {
             }
             timeStringMatrix.push(timeSlice);
         }
-        let result = '';
+        // Transform into string row-by-row
+        let tab = `tempo = ${tempo} bpm\n`;
+        const notesPerMeaure = +timeSig.split('/')[0];
         for (let string = 0; string < 6; string++) {
-            for (let time = 0; time < pattern.length; time++) {
-                result = `${result}${timeStringMatrix[time][string]}`;
+            // Measure lines
+            let noteOfMeasure = 0;
+            for (let time = 0; time < timeStringMatrix.length; time++) {
+                tab = `${tab}${timeStringMatrix[time][string]}`;
+                if (noteOfMeasure === notesPerMeaure && time < timeStringMatrix.length - 1) {
+                    noteOfMeasure = 0;
+                    tab = `${tab}|-`;
+                }
+                noteOfMeasure++;
             }
-            result = `${result}\n`;
+            tab = `${tab}\n`;
         }
-        console.log(result);
-        this.setState({ textTab: result });
+
+        // Create fretboard preview
+        const pattern2 = generatePattern(type, rootNote);
+        const fretboard = Array.from({ length: 6 }).map(() => Array.from({ length: 25 }));
+        for (const [i, position] of pattern2.entries()) {
+            const [string, fret] = position;
+            fretboard[string - 1][fret] = i + 1;
+        }
+        // Transform into JSX table
+        const stringNotes = ['e', 'B', 'G', 'D', 'A', 'E'];
+        let board = fretboard.map((row, i) => {
+            return (
+                <tr>
+                    <td>{stringNotes[i]}</td>
+                    {row.map(d => (
+                        <td>{d}</td>
+                    ))}
+                </tr>
+            );
+        });
+
+        // Update state to draw
+        this.setState({
+            textTab: tab,
+            fretboard: board,
+        });
     }
 
     /**
@@ -66,11 +111,11 @@ class App extends PureComponent {
      */
     download = () => {
         const { type, rootNote, tempo, timeSig, repeat, alternate } = this.state;
-        // Generate XML
+        // Generate pattern
         const pattern = generatePattern(type, rootNote, repeat, alternate);
+        // Generate XML
         const name = `[Guitar Exercise] ${rootNote} ${type} ${tempo} bpm`;
         const text = generateXml(name, tempo, timeSig, pattern);
-
         // Download text file
         const fileName = `${name}.musicxml`;
         const element = document.createElement('a');
@@ -83,6 +128,14 @@ class App extends PureComponent {
     };
 
     render() {
+        const typeOptions = [];
+        for (const [key, value] of patterns) {
+            typeOptions.push(
+                <option key={key} value={key}>
+                    {value.name}
+                </option>
+            );
+        }
         return (
             <div className="App">
                 <h1>Guitar Exercise Generator</h1>
@@ -91,12 +144,7 @@ class App extends PureComponent {
                     <label>
                         Type
                         <select onChange={event => this.setState({ type: event.target.value })}>
-                            <option value='pentatonic'>
-                                Pentatonic Scale
-                        </option>
-                            <option value='heptatonic'>
-                                Heptatonic Scale
-                        </option>
+                            {typeOptions}
                         </select>
                     </label>
                     <label>
@@ -154,8 +202,21 @@ class App extends PureComponent {
                     </button>
                 </div>
                 <div>
+                    <h3>Tab Preview</h3>
                     <textarea value={this.state.textTab} readOnly>
                     </textarea>
+                    <h3>Fretboard Preview</h3>
+                    <table>
+                        <tbody>
+                            {this.state.fretboard}
+                            <tr>
+                                <td></td>
+                                {Array.from({ length: 25 }).map((d, i) => (
+                                    <td>{i}</td>
+                                ))}
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
                 <div className='githubLink'>
                     <a href='https://github.com/fheyen/guitar-exercise-generator'>
