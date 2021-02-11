@@ -38,6 +38,11 @@ button:disabled {
   cursor: no-drop;
 }
 
+input[type='number'] {
+  width: 50px;
+}
+
+/* Tab */
 textarea,
 textarea:focus {
   margin: 0 2%;
@@ -58,6 +63,7 @@ textarea:focus {
   outline: none;
 }
 
+/* Fretboard */
 table {
   margin: 0 auto 10px auto;
 }
@@ -80,18 +86,31 @@ table tr td:nth-child(19),
 table tr td:nth-child(21),
 table tr td:nth-child(23),
 table tr td:nth-child(26) {
-  background-color: rgba(128, 128, 128, 0.3);
+  background-color: rgba(128, 128, 128, 0.2);
 }
 
 table td {
   padding: 2px;
   width: 20px;
   border-radius: 5px;
-  background-color: rgba(128, 128, 128, 0.2);
+  background-color: rgba(128, 128, 128, 0.1);
 }
 
+/* Animation */
 table > tbody > tr > td.highlight {
-  background-color: steelblue;
+  animation: fadeIn ease-in 0.6s;
+  animation-iteration-count: 1;
+  animation-delay: 0s;
+  animation-fill-mode: forwards;
+  animation-direction: normal;
+}
+
+@keyframes fadeIn {
+  0% {
+  }
+  50% {
+    background-color: steelblue;
+  }
 }
 
 /* GitHub Link */

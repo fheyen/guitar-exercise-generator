@@ -5,6 +5,7 @@ import patterns from './Patterns';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { faToggleOff, faToggleOn } from '@fortawesome/free-solid-svg-icons';
+import { Utils } from 'musicvis-lib';
 
 class App extends PureComponent {
 
@@ -103,14 +104,15 @@ class App extends PureComponent {
      * @param {*} index
      */
     animate(index) {
-        const { pattern } = this.state;
+        const { pattern, tempo } = this.state;
         if (index > pattern.length - 1) {
             this.setState({ currentAnimationPosition: null });
             return;
         }
         const [string, fret] = pattern[index];
         this.setState({ currentAnimationPosition: [string, fret] });
-        window.setTimeout(() => this.animate(index + 1), 500);
+        const wait = Utils.bpmToSecondsPerBeat(tempo) * 1000;
+        window.setTimeout(() => this.animate(index + 1), wait);
     }
 
     /**
@@ -250,6 +252,7 @@ class App extends PureComponent {
                     <button
                         onClick={() => this.animate(0)}
                         disabled={currPos !== null}
+                        title='Play the pattern on the fretboard at the set tempo'
                     >
                         Animate
                     </button>
