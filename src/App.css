@@ -1,0 +1,26 @@
+.App {
+  text-align: center;
+  color: #eee;
+}
+
+h1,
+h2 {
+  color: steelblue;
+}
+
+label {
+  padding: 3px 10px;
+  display: block;
+}
+
+button,
+input,
+select {
+  margin-left: 5px;
+  padding: 3px 6px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #777;
+  background-color: #555;
+  color: #eee;
+}
