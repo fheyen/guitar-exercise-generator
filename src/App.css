@@ -8,6 +8,10 @@ h2 {
   color: steelblue;
 }
 
+h3 {
+  color: #ccc;
+}
+
 label {
   padding: 4px 10px;
   display: block;
@@ -23,6 +27,15 @@ select {
   border: 1px solid #666;
   background-color: #333;
   color: #eee;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: no-drop;
 }
 
 textarea,
@@ -46,7 +59,7 @@ textarea:focus {
 }
 
 table {
-  margin: auto;
+  margin: 0 auto 10px auto;
 }
 
 table tr:nth-child(7) td,
@@ -75,6 +88,10 @@ table td {
   width: 20px;
   border-radius: 5px;
   background-color: rgba(128, 128, 128, 0.2);
+}
+
+table > tbody > tr > td.highlight {
+  background-color: steelblue;
 }
 
 /* GitHub Link */

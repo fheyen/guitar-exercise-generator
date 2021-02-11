@@ -18,7 +18,9 @@ class App extends PureComponent {
             repeat: 4,
             alternate: true,
             textTab: '',
-            fretboard: null,
+            fretboard: [[]],
+            pattern: [],
+            currentAnimationPosition: null,
         };
     }
 
@@ -85,25 +87,30 @@ class App extends PureComponent {
         for (const [i, position] of pattern2.entries()) {
             const [string, fret] = position;
             fretboard[string - 1][fret] = i + 1;
+            // fretboard[string - 1][fret + 12] = i + 1 + pattern2.length;
         }
-        // Transform into JSX table
-        const stringNotes = ['e', 'B', 'G', 'D', 'A', 'E'];
-        let board = fretboard.map((row, i) => {
-            return (
-                <tr>
-                    <td>{stringNotes[i]}</td>
-                    {row.map(d => (
-                        <td>{d}</td>
-                    ))}
-                </tr>
-            );
-        });
 
         // Update state to draw
         this.setState({
             textTab: tab,
-            fretboard: board,
+            pattern: pattern2,
+            fretboard,
         });
+    }
+
+    /**
+     * Animates the fretboard
+     * @param {*} index
+     */
+    animate(index) {
+        const { pattern } = this.state;
+        if (index > pattern.length - 1) {
+            this.setState({ currentAnimationPosition: null });
+            return;
+        }
+        const [string, fret] = pattern[index];
+        this.setState({ currentAnimationPosition: [string, fret] });
+        window.setTimeout(() => this.animate(index + 1), 500);
     }
 
     /**
@@ -128,6 +135,8 @@ class App extends PureComponent {
     };
 
     render() {
+        const { currentAnimationPosition: currPos, fretboard } = this.state;
+        // Options for pattenr type
         const typeOptions = [];
         for (const [key, value] of patterns) {
             typeOptions.push(
@@ -136,6 +145,27 @@ class App extends PureComponent {
                 </option>
             );
         }
+        // Transform fretboard preview into JSX table
+        const stringNotes = ['e', 'B', 'G', 'D', 'A', 'E'];
+        const [hString, hFret] = currPos ?? [-1, -1];
+        const board = fretboard.map((row, string) => {
+            return (
+                <tr>
+                    <td>{stringNotes[string]}</td>
+                    {row.map((d, fret) => {
+                        let cName = '';
+                        if (string + 1 === hString && fret == hFret) {
+                            cName = 'highlight';
+                        }
+                        return (
+                            <td className={cName}>
+                                {d}
+                            </td>
+                        );
+                    })}
+                </tr>
+            );
+        });
         return (
             <div className="App">
                 <h1>Guitar Exercise Generator</h1>
@@ -208,7 +238,7 @@ class App extends PureComponent {
                     <h3>Fretboard Preview</h3>
                     <table>
                         <tbody>
-                            {this.state.fretboard}
+                            {board}
                             <tr>
                                 <td></td>
                                 {Array.from({ length: 25 }).map((d, i) => (
@@ -217,6 +247,12 @@ class App extends PureComponent {
                             </tr>
                         </tbody>
                     </table>
+                    <button
+                        onClick={() => this.animate(0)}
+                        disabled={currPos !== null}
+                    >
+                        Animate
+                    </button>
                 </div>
                 <div className='githubLink'>
                     <a href='https://github.com/fheyen/guitar-exercise-generator'>
