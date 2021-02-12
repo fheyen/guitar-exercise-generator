@@ -1,6 +1,6 @@
 {
   "name": "guitar-exercise-generator",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "homepage": "https://fheyen.github.io/guitar-exercise-generator/",
   "private": false,
   "dependencies": {
