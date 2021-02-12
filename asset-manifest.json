@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/guitar-exercise-generator/static/css/main.3468f1fd.chunk.css",
-    "main.js": "/guitar-exercise-generator/static/js/main.e0292a27.chunk.js",
-    "main.js.map": "/guitar-exercise-generator/static/js/main.e0292a27.chunk.js.map",
+    "main.css": "/guitar-exercise-generator/static/css/main.2937876e.chunk.css",
+    "main.js": "/guitar-exercise-generator/static/js/main.de121472.chunk.js",
+    "main.js.map": "/guitar-exercise-generator/static/js/main.de121472.chunk.js.map",
     "runtime-main.js": "/guitar-exercise-generator/static/js/runtime-main.6f36abd1.js",
     "runtime-main.js.map": "/guitar-exercise-generator/static/js/runtime-main.6f36abd1.js.map",
     "static/js/2.213620b4.chunk.js": "/guitar-exercise-generator/static/js/2.213620b4.chunk.js",
     "static/js/2.213620b4.chunk.js.map": "/guitar-exercise-generator/static/js/2.213620b4.chunk.js.map",
     "index.html": "/guitar-exercise-generator/index.html",
-    "static/css/main.3468f1fd.chunk.css.map": "/guitar-exercise-generator/static/css/main.3468f1fd.chunk.css.map",
+    "static/css/main.2937876e.chunk.css.map": "/guitar-exercise-generator/static/css/main.2937876e.chunk.css.map",
     "static/js/2.213620b4.chunk.js.LICENSE.txt": "/guitar-exercise-generator/static/js/2.213620b4.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.6f36abd1.js",
     "static/js/2.213620b4.chunk.js",
-    "static/css/main.3468f1fd.chunk.css",
-    "static/js/main.e0292a27.chunk.js"
+    "static/css/main.2937876e.chunk.css",
+    "static/js/main.de121472.chunk.js"
   ]
 }
