@@ -153,15 +153,18 @@ class App extends PureComponent {
         const board = fretboard.map((row, string) => {
             return (
                 <tr>
-                    <td>{stringNotes[string]}</td>
-                    {row.map((d, fret) => {
+                    <td key='note'>{stringNotes[string]}</td>
+                    {row.map((value, fret) => {
                         let cName = '';
                         if (string + 1 === hString && fret == hFret) {
                             cName = 'highlight';
                         }
                         return (
-                            <td className={cName}>
-                                {d}
+                            <td
+                                key={`${string} ${fret} ${value}`}
+                                className={cName}
+                            >
+                                {value}
                             </td>
                         );
                     })}

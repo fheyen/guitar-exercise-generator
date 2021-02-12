@@ -18,7 +18,6 @@ export function generatePattern(patternType, rootNote = 'A', repeat = 1, alterna
     });
     if (repeat === 1) {
         return shiftedToRoot;
-
     }
     // Repeat with or without alternative diraction
     let result = shiftedToRoot;
@@ -32,6 +31,7 @@ export function generatePattern(patternType, rootNote = 'A', repeat = 1, alterna
             }
         }
     }
+    console.log(pattern);
     return result;
 }
 
