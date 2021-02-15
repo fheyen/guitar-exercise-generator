@@ -38,11 +38,17 @@ class App extends PureComponent {
                     {
                         currentInstrument === 'Piano' && <Piano />
                     }
+                    {
+                        currentInstrument === 'Drums' && <h2>Coming soon!</h2>
+                    }
+                    {
+                        currentInstrument === 'Ukulele' && <h2>Coming soon!</h2>
+                    }
                 </div>
                 <div className='githubLink'>
-                    <a href='https://github.com/fheyen/guitar-exercise-generator'>
+                    <a href='https://github.com/fheyen/music-exercise-generator'>
                         <FontAwesomeIcon icon={faGithub} />&nbsp;
-                        https://github.com/fheyen/guitar-exercise-generator
+                        https://github.com/fheyen/music-exercise-generator
                      </a>
                 </div>
             </div>

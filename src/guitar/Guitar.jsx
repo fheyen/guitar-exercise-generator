@@ -119,7 +119,7 @@ class Guitar extends PureComponent {
         const [hString, hFret] = currPos ?? [-1, -1];
         const board = fretboard.map((row, string) => {
             return (
-                <tr>
+                <tr key={row}>
                     <td key='note'>{stringNotes[string]}</td>
                     {row.map((value, fret) => {
                         let cName = '';
@@ -214,7 +214,7 @@ class Guitar extends PureComponent {
                             <tr>
                                 <td></td>
                                 {Array.from({ length: 25 }).map((d, i) => (
-                                    <td>{i}</td>
+                                    <td key={i}>{i}</td>
                                 ))}
                             </tr>
                         </tbody>
