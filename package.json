@@ -1,7 +1,7 @@
 {
-  "name": "guitar-exercise-generator",
+  "name": "music-exercise-generator",
   "version": "0.5.0",
-  "homepage": "https://fheyen.github.io/guitar-exercise-generator/",
+  "homepage": "https://fheyen.github.io/music-exercise-generator/",
   "private": false,
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.34",
@@ -11,7 +11,9 @@
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.5",
     "@testing-library/user-event": "^12.7.0",
+    "@tonaljs/tonal": "^4.6.0",
     "musicvis-lib": "^0.37.1",
+    "prop-types": "^15.7.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-scripts": "4.0.2"

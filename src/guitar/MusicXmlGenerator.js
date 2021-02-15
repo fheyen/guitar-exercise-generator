@@ -19,7 +19,7 @@ export function generatePattern(patternType, rootNote = 'A', repeat = 1, alterna
     if (repeat === 1) {
         return shiftedToRoot;
     }
-    // Repeat with or without alternative diraction
+    // Repeat with or without alternative direction
     let result = shiftedToRoot;
     if (repeat > 1) {
         let reversed = [...shiftedToRoot].reverse();
@@ -31,7 +31,7 @@ export function generatePattern(patternType, rootNote = 'A', repeat = 1, alterna
             }
         }
     }
-    console.log(pattern);
+    // console.log(pattern);
     return result;
 }
 
@@ -86,7 +86,7 @@ export function generateXml(name, tempo, timeSig, positions) {
     </work>
     <identification>
         <encoding>
-            <software>https://github.com/fheyen/guitar-exercise-generator</software>
+            <software>https://github.com/fheyen/music-exercise-generator</software>
         </encoding>
     </identification>
     <part-list>
