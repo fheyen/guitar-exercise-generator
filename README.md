@@ -10,4 +10,4 @@ Currently, guitar files cannot be opened with MuseScore.
 
 ## Contribution
 
-Feel free to contribute through issues or pull requests, for example by adding more exercise patterns.
+Feel free to contribute through issues or pull requests, for example by adding more exercise patterns. Any ideas are welcome!

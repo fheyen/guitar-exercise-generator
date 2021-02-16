@@ -57,7 +57,7 @@ export function generateXml(name, tempo, timeSig, notes) {
         }
         currentNoteInMeasure++;
         // Handle sharp / flat
-        // TODO: this assumes C major as signature
+        // TODO: this assumes C major as signature, but should be fine
         let alter = 0;
         if (note.endsWith('#')) {
             note = note.slice(0, -1);
@@ -75,9 +75,6 @@ export function generateXml(name, tempo, timeSig, notes) {
                 <type>quarter</type>
             </note>`;
     }
-    console.log(notes);
-    console.log(measuresString);
-
     return `<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 3.1 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
 <score-partwise version="3.1">

@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import Guitar from './guitar/Guitar';
 import Piano from './piano/Piano';
+import Drums from './drums/Drums';
 
 class App extends PureComponent {
 
@@ -39,7 +40,7 @@ class App extends PureComponent {
                         currentInstrument === 'Piano' && <Piano />
                     }
                     {
-                        currentInstrument === 'Drums' && <h2>Coming soon!</h2>
+                        currentInstrument === 'Drums' && <Drums />
                     }
                     {
                         currentInstrument === 'Ukulele' && <h2>Coming soon!</h2>

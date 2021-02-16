@@ -18,8 +18,6 @@ class Guitar extends PureComponent {
             timeSig: '4/4',
             repeat: 4,
             alternate: true,
-            textTab: '',
-            fretboard: [[]],
             pattern: [],
             currentAnimationPosition: null,
         };

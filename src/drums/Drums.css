@@ -1,0 +1,20 @@
+/* Tab */
+textarea,
+textarea:focus {
+  margin: 0 2%;
+  padding: 0;
+  margin-top: 5px;
+  border: none;
+  background: none;
+  color: #eee;
+  width: 96%;
+  height: 200px;
+  text-align: center;
+  font-family: monospace;
+  font-size: 10px;
+  white-space: pre;
+  overflow-wrap: normal;
+  overflow-x: auto;
+  cursor: default;
+  outline: none;
+}
