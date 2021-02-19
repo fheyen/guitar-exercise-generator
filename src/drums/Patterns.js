@@ -42,6 +42,137 @@ const patterns = new Map([
             ['bass'],
         ]
     }],
+    // From https://learndrumsforfree.com/2015/07/10-basic-rock-drum-beats/
+    ['Simple Pattern 1', {
+        name: 'Simple Pattern 1',
+        hits: [
+            ['hihat-closed', 'bass'],
+            ['hihat-closed'],
+            ['hihat-closed', 'snare'],
+            ['hihat-closed'],
+            ['hihat-closed', 'bass'],
+            ['hihat-closed', 'bass'],
+            ['hihat-closed', 'snare'],
+            ['hihat-closed'],
+        ]
+    }],
+    ['Simple Pattern 2', {
+        name: 'Simple Pattern 2',
+        hits: [
+            ['hihat-closed', 'bass'],
+            ['hihat-closed', 'bass'],
+            ['hihat-closed', 'snare'],
+            ['hihat-closed'],
+            ['hihat-closed', 'bass'],
+            ['hihat-closed'],
+            ['hihat-closed', 'snare'],
+            ['hihat-closed'],
+        ]
+    }],
+    ['Simple Pattern 3', {
+        name: 'Simple Pattern 3',
+        hits: [
+            ['hihat-closed', 'bass'],
+            ['hihat-closed', 'bass'],
+            ['hihat-closed', 'snare'],
+            ['hihat-closed'],
+            ['hihat-closed', 'bass'],
+            ['hihat-closed', 'bass'],
+            ['hihat-closed', 'snare'],
+            ['hihat-closed'],
+        ]
+    }],
+    ['Simple Pattern 4', {
+        name: 'Simple Pattern 4',
+        hits: [
+            ['hihat-closed', 'bass'],
+            ['hihat-closed'],
+            ['hihat-closed', 'snare'],
+            ['hihat-closed', 'bass'],
+            ['hihat-closed', 'bass'],
+            ['hihat-closed'],
+            ['hihat-closed', 'snare'],
+            ['hihat-closed'],
+        ]
+    }],
+    ['Simple Pattern 5', {
+        name: 'Simple Pattern 5',
+        hits: [
+            ['hihat-closed', 'bass'],
+            ['hihat-closed', 'bass'],
+            ['hihat-closed', 'snare'],
+            ['hihat-closed', 'bass'],
+            ['hihat-closed', 'bass'],
+            ['hihat-closed'],
+            ['hihat-closed', 'snare'],
+            ['hihat-closed'],
+        ]
+    }],
+    ['Simple Pattern 6', {
+        name: 'Simple Pattern 6',
+        hits: [
+            ['hihat-closed', 'bass'],
+            ['hihat-closed', 'bass'],
+            ['hihat-closed', 'snare'],
+            ['hihat-closed'],
+            ['hihat-closed'],
+            ['hihat-closed', 'bass'],
+            ['hihat-closed', 'snare'],
+            ['hihat-closed'],
+        ]
+    }],
+    ['Simple Pattern 7', {
+        name: 'Simple Pattern 7',
+        hits: [
+            ['hihat-closed', 'bass'],
+            ['hihat-closed'],
+            ['hihat-closed', 'snare'],
+            ['hihat-closed', 'bass'],
+            ['hihat-closed'],
+            ['hihat-closed', 'bass'],
+            ['hihat-closed', 'snare'],
+            ['hihat-closed'],
+        ]
+    }],
+    ['Simple Pattern 8', {
+        name: 'Simple Pattern 8',
+        hits: [
+            ['hihat-closed', 'bass'],
+            ['hihat-closed', 'bass'],
+            ['hihat-closed', 'snare'],
+            ['hihat-closed', 'bass'],
+            ['hihat-closed'],
+            ['hihat-closed', 'bass'],
+            ['hihat-closed', 'snare'],
+            ['hihat-closed'],
+        ]
+    }],
+    ['Simple Pattern 9', {
+        name: 'Simple Pattern 9',
+        hits: [
+            ['hihat-closed', 'bass'],
+            ['hihat-closed'],
+            ['hihat-closed', 'snare'],
+            ['hihat-closed', 'bass'],
+            ['hihat-closed', 'bass'],
+            ['hihat-closed', 'bass'],
+            ['hihat-closed', 'snare'],
+            ['hihat-closed'],
+        ]
+    }],
+    ['Simple Pattern 10', {
+        name: 'Simple Pattern 10',
+        hits: [
+            ['hihat-closed', 'snare', 'bass'],
+            ['hihat-closed'],
+            ['hihat-closed', 'snare', 'bass'],
+            ['hihat-closed'],
+            ['hihat-closed', 'snare'],
+            ['hihat-closed', 'bass'],
+            ['hihat-closed', 'snare'],
+            ['hihat-closed', 'bass'],
+        ]
+    }],
 ]);
 
 export default patterns;

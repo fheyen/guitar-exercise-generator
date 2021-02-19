@@ -162,7 +162,7 @@ class Guitar extends PureComponent {
                         <input
                             type='number'
                             min='30'
-                            max='200'
+                            max='400'
                             step='5'
                             defaultValue='120'
                             onInput={e => this.setState({ tempo: +e.target.value })}

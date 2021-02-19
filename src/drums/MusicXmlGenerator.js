@@ -29,12 +29,11 @@ export const drumInstrumentMap = new Map([
         }
     ],
     [
-        // TODO:
         'hihat-pedal', {
             instr: 'P1-I45',
-            display: ['', ''],
-            notehead: '',
-            stem: '',
+            display: ['D', '4'],
+            notehead: 'x',
+            stem: 'down',
         }
     ],
     [
@@ -178,9 +177,14 @@ export function generateXml(name, tempo, timeSig, drumHits) {
         // Get instrument etc.
         if (hit.length === 1) {
             const drum = hit[0];
-            // TODO:
             if (drum === 'rest') {
-                console.warn('rests not handled yet');
+                measuresString = `${measuresString}
+                <note>
+                    <rest/>
+                    <duration>1</duration>
+                    <voice>1</voice>
+                    <type>quarter</type>
+                </note>`;
             } else {
                 const details = drumInstrumentMap.get(drum);
                 measuresString = `${measuresString}

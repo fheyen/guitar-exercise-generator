@@ -67,6 +67,9 @@ class Drums extends PureComponent {
         for (const drumHits of pattern) {
             const timeSlice = Array.from({ length: positions.length }).fill('--');
             for (const hit of drumHits) {
+                if (hit === 'rest') {
+                    continue;
+                }
                 const row = positions.indexOf(hit);
                 timeSlice[row] = `x-`;
             }
@@ -113,7 +116,7 @@ class Drums extends PureComponent {
                         <input
                             type='number'
                             min='30'
-                            max='200'
+                            max='400'
                             step='5'
                             defaultValue='120'
                             onInput={e => this.setState({ tempo: +e.target.value })}
