@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/music-exercise-generator/static/css/main.4c3bec81.chunk.css",
-    "main.js": "/music-exercise-generator/static/js/main.aa18914f.chunk.js",
-    "main.js.map": "/music-exercise-generator/static/js/main.aa18914f.chunk.js.map",
+    "main.js": "/music-exercise-generator/static/js/main.ac111689.chunk.js",
+    "main.js.map": "/music-exercise-generator/static/js/main.ac111689.chunk.js.map",
     "runtime-main.js": "/music-exercise-generator/static/js/runtime-main.bfaf69d5.js",
     "runtime-main.js.map": "/music-exercise-generator/static/js/runtime-main.bfaf69d5.js.map",
     "static/js/2.3418ede6.chunk.js": "/music-exercise-generator/static/js/2.3418ede6.chunk.js",
@@ -15,6 +15,6 @@
     "static/js/runtime-main.bfaf69d5.js",
     "static/js/2.3418ede6.chunk.js",
     "static/css/main.4c3bec81.chunk.css",
-    "static/js/main.aa18914f.chunk.js"
+    "static/js/main.ac111689.chunk.js"
   ]
 }
